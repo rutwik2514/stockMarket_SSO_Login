@@ -62,7 +62,6 @@ const AppRoutes = () => {
         <Route exact path="/sign-up" element={<SignUp />}></Route>
         <Route exact path="/setToken/:token" element={<Token/>}></Route>
         <Route exact path="/home" element={<HomePage />}></Route>
-
         <Route exact path="/buy" element={<Buy />}></Route>
         <Route exact path="/sell" element={<Sell />}></Route>
         <Route exact path="/specificStockAnalysis/:stockName" element={<SpecificStockAnalysis />}></Route>
