@@ -1,9 +1,11 @@
 import axios from "axios";
  /* eslint-disable */
 
+let url = process.env.REACT_APP_API_URI
+console.log("url is", url)
 export const handleSubmitSignIn = async (userName, password) => {
   try {
-    const res = await axios.post("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/auth/signin", {
+    const res = await axios.post(`${url}/api/auth/signin`, {
       userName: userName,
       password: password,
     });
@@ -20,7 +22,7 @@ export const handleSubmitSignIn = async (userName, password) => {
 export const handleSamlSignIn = async () => {
   try {
     console.log("came to saml sign")
-    const res = await fetch("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/auth/saml/login");
+    const res = await fetch(`${url}/api/auth/saml/login`);
     const { token } = res.data;
     localStorage.setItem("user", token);
     return { error: null };
@@ -38,7 +40,7 @@ export const handleSubmitSignUp = async (
   confirmPassword
 ) => {
   try {
-    const res = await axios.post("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/auth/signup", {
+    const res = await axios.post(`${url}/api/auth/signup`, {
       userName: userName,
       email: email,
       password: password,

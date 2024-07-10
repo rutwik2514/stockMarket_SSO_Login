@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 import React from "react";
 import { LuArrowRightSquare ,LuArrowLeftSquare } from "react-icons/lu";
 import { FaArrowRight } from "react-icons/fa";

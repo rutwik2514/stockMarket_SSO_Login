@@ -1,10 +1,14 @@
 import axios from "axios";
+ /* eslint-disable */
+
+let url = process.env.REACT_APP_API_URI
+
 
 export const getUser = async () => {
   try {
     const token = localStorage.getItem("user");
     const user_info = await axios.post(
-      "http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/auth/fetchUser",
+      `${url}/api/auth/fetchUser`,
       {},
       { headers: { authorization: token ? `${token}` : " " } }
     );
@@ -65,7 +69,7 @@ export const getMonthlyData=async(stockName)=>{
 
 export const buyStock=async(stockName,stockInfo,stockQuantity)=>{
   const token = localStorage.getItem("user");
-  const response= await axios.post("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/stock/buy",{
+  const response= await axios.post(`${url}/api/stock/buy`,{
     stockName:stockName,
     stockBuyingPrice:stockInfo,
     stockBuyQuantity:stockQuantity
@@ -77,7 +81,7 @@ export const getStockData=async()=>{
   try{
    
     const token = localStorage.getItem("user");
-    const response= await axios.post("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/stock/getstocks",{},{ headers: { authorization: token ? `${token}` : " " } });
+    const response= await axios.post(`${url}/api/stock/getstocks`,{},{ headers: { authorization: token ? `${token}` : " " } });
     const portfolio_user=response.data;
     return{portfolio_user:portfolio_user}
   }catch(e)
@@ -90,7 +94,7 @@ export const handleSell=async(stockName,stockQuantity,stockPrice)=>{
   const token = localStorage.getItem("user");
   // console.log("inide handle sell",stockPrice);
   try{
-    const response= await axios.post("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/stock/sell",{
+    const response= await axios.post(`${url}/api/stock/sell`,{
       stockName:stockName,
       stockQuantity:stockQuantity,
       stockPrice:stockPrice
@@ -122,7 +126,7 @@ export const getStockAnalysis=async(stockName)=>{
 export const getUserDetails=async()=>{
   try{
     const token = localStorage.getItem("user");
-    const response=await axios.post("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/auth/getUserDetails",{},{ headers: { authorization: token ? `${token}` : " " } });
+    const response=await axios.post(`${url}/api/auth/getUserDetails`,{},{ headers: { authorization: token ? `${token}` : " " } });
     // console.log(response.data.user);
     return{response:response.data.user}
   }catch(e)
@@ -133,7 +137,7 @@ export const getUserDetails=async()=>{
 export const updateProfile=async(updateUserName)=>{
   try{
     const token = localStorage.getItem("user");
-    const response=await axios.post("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/auth/updateUser",{updateUserName:updateUserName},{ headers: { authorization: token ? `${token}` : " " } });
+    const response=await axios.post(`${url}/api/auth/updateUser`,{updateUserName:updateUserName},{ headers: { authorization: token ? `${token}` : " " } });
     console.log(response);
     return{response:response.data.user}
   }catch(e)

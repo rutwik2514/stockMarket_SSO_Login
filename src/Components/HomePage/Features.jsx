@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 import React from 'react';
 import Feature from './Feature';
 import "./Feature.css"

@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,7 +28,8 @@ function SignIn() {
   const handleSamlLogin = async () => {
     try {
       // const samlLoginUrl = "http://localhost:3001/api/auth/saml/login";
-      window.location.replace("http://ec2-16-171-150-119.eu-north-1.compute.amazonaws.com:3001/api/auth/saml/login")
+      let url = process.env.REACT_APP_API_URI
+      window.location.replace(`${url}/api/auth/saml/login`)
       
 
     } catch (error) {

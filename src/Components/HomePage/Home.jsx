@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import StockImg from "../../Assets/stock.svg";
