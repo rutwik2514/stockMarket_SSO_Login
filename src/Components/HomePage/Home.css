@@ -1,0 +1,17 @@
+@media(max-width: 900px) {
+  .animationDiv {
+    display: none !important;
+  }
+
+  .textDiv {
+    width: 100vw !important;
+  }
+}
+
+.animationDiv img.stockImg {
+  height: 60vh !important;
+}
+
+
+
+

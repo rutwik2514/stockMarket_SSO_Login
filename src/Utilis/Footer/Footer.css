@@ -1,0 +1,54 @@
+.footer {
+    background-color: #f5ecfe;
+    padding: 60px 0;
+    overflow-x: hidden;
+  }
+  
+  .footer a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+  }
+  
+  .footer a:hover {
+    color: black;
+  }
+  
+  .footer-heading {
+    margin-bottom: 0;
+    padding-bottom: 25px;
+  }
+  
+  .footer-heading a {
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+  }
+  
+  .menu a {
+    margin: 0 15px;
+    font-size: 1em;
+    font-weight: 800;
+  }
+  
+ 
+ 
+
+
+  
+  .copyright {
+    font-size: 0.9em;
+    color: black;
+    font-weight: 500;
+  }
+  
+  .copyright a {
+    color: black;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  
+  .copyright a:hover {
+    color: black;
+  }
