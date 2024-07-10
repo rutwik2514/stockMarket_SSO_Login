@@ -1,6 +1,5 @@
 import axios from "axios";
  /* eslint-disable */
-
 let url = process.env.REACT_APP_API_URI
 console.log("url is", url)
 export const handleSubmitSignIn = async (userName, password) => {
@@ -19,19 +18,7 @@ export const handleSubmitSignIn = async (userName, password) => {
     return { error: errorMessage };
   }
 };
-export const handleSamlSignIn = async () => {
-  try {
-    console.log("came to saml sign")
-    const res = await fetch(`${url}/api/auth/saml/login`);
-    const { token } = res.data;
-    localStorage.setItem("user", token);
-    return { error: null };
-  } catch (error) {
-    const errorMessage = error?.response?.data?.message;
-    console.log(errorMessage);
-    return { error: errorMessage };
-  }
-};
+
 
 export const handleSubmitSignUp = async (
   userName,

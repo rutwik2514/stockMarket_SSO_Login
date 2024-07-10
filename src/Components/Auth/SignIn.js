@@ -29,9 +29,8 @@ function SignIn() {
     try {
       // const samlLoginUrl = "http://localhost:3001/api/auth/saml/login";
       let url = process.env.REACT_APP_API_URI
+      console.log("url for redirect is", url);
       window.location.replace(`${url}/api/auth/saml/login`)
-      
-
     } catch (error) {
       console.error("Error during SAML login:", error);
     }
