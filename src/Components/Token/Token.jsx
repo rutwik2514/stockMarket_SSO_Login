@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
 function Token() {
     const { token } = useParams();
-    localStorage.setItem("user", token);
     const navigate = useNavigate();
-    navigate("/home")
+
+    useEffect(() => {
+        localStorage.setItem("user", token);
+        navigate("/home");
+    }, [token, navigate]);
   return (
-    <p>Loading...</p>
+    <p>{token}</p>
   )
 }
 

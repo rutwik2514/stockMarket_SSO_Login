@@ -2,7 +2,7 @@
 
 import './Navbar.css';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
@@ -16,9 +16,13 @@ import { HiCurrencyRupee } from "react-icons/hi2";
 
 function Sidebar_responsive() {
   const [sidebar, setSidebar] = useState(false);
-
+  const navigate = useNavigate();
   const showSidebar = () => setSidebar(!sidebar);
-
+  const handleLocalLogout = () => {
+    // Remove local storage items or tokens
+    localStorage.removeItem("user");
+    navigate("/sign-in");
+  };
   const handleClickOutside = (event) => {
     // Checks if click is not on sidebar
     if (sidebar && !document.querySelector('.sidebar-menu').contains(event.target) && !document.querySelector('.sidebar-icons').contains(event.target)) {
@@ -60,7 +64,7 @@ function Sidebar_responsive() {
           onMouseOver={(e) => (e.currentTarget.style.cursor = "pointer")}
         >
           <CiLogout style={{ marginBottom: "5px", marginRight: "5px", backgroundColor:"#f5ecfe"}} />
-          <h5 className="text-l font-bold" style={{ textAlign: "center", textDecoration: "none", backgroundColor:"#f5ecfe" }}>
+          <h5 className="text-l font-bold" style={{ textAlign: "center", textDecoration: "none", backgroundColor:"#f5ecfe" }} onClick={handleLocalLogout}>
             Logout
           </h5>
         </div>
