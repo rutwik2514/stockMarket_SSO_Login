@@ -21,7 +21,7 @@ function Token() {
         // eslint-disable-next-line
     }, [id, navigate]);
   return (
-    <p>{id}</p>
+    <p>Loading...</p>
   )
 }
 
