@@ -10,7 +10,7 @@ function Token() {
       console.log("res is", res)
       if(res.error==null){
         localStorage.setItem("user",res.token)
-        navigate("/home")
+        // navigate("/home")
       }
       else{
         window.alert("Something went wrong")
