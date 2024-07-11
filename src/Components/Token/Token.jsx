@@ -1,17 +1,27 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { getToken } from '../../Api/auth';
 function Token() {
-    const { token } = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
+
+    const setToken = async() =>{
+      const res = await getToken(id);
+      console.log("res is", res)
+      if(res.error==null){
+        localStorage.setItem("user",res.token)
+        navigate("/home")
+      }
+      else{
+        window.alert("Something went wrong")
+      }
+    }
     useEffect(() => {
-        let token =  Cookies.get("jwtToken")
-        console.log("jwt token is", Cookies.get("jwtToken"));
-        localStorage.setItem("user", token);
-        // navigate("/home")
-    }, [token, navigate]);
+        setToken();
+        // eslint-disable-next-line
+    }, [id, navigate]);
   return (
-    <p>{token}</p>
+    <p>{id}</p>
   )
 }
 

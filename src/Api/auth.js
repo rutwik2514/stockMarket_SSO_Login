@@ -39,3 +39,18 @@ export const handleSubmitSignUp = async (
     return { error: error?.res?.data?.message };
   }
 };
+
+export const getToken = async (id) =>{
+  try {
+    const res = await axios.post(`${url}/api/auth/getToken`, {
+        id:id
+    });
+
+    console.log("res of jwt is", res);
+    return {token : res.data.token, error:null}
+    return true;
+  } catch (error) {
+    return { error: error?.res?.data?.message };
+    
+  }
+}
