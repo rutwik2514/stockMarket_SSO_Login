@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import passport from "passport";
-import session from "express-session"; // Import express-session
+import session from "express-session";
 import samlStrategy from "passport-saml";
 import authRoutes from "./routes/auth_routes.js";
 import stockRoutes from "./routes/stock_routes.js";
@@ -23,10 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'https://frontend--tradewise-rutwik.netlify.app',
+  origin: '*',
   credentials: true,
-  exposedHeaders: ['Access-Control-Allow-Origin'],
-  optionsSuccessStatus: 200,
+  exposedHeaders: ['Access-Control-Allow-Origin']
 }));
 
 

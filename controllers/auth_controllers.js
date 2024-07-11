@@ -81,11 +81,8 @@ export const getToken = (req, res) => {
     return res.status(200).send({ message: "User logged in succesfuly", token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
-    
+
   }
-
-
-
 }
 
 export const fetchUser = (req, res) => {

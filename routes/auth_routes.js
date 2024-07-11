@@ -23,6 +23,8 @@ router.post("/fetchUser", checkAuthorization, fetchUser);
 router.post("/getUserDetails", checkAuthorization, getUserDetails);
 router.post("/updateUser", checkAuthorization, updateUsername);
 router.post("/getToken",getToken)
+
+
 // SAML routes
 router.get(
   "/saml/login",
@@ -77,7 +79,7 @@ router.post(
     try {
       const token = jwt.sign({ id }, process.env.JWTSECRET);
       // res.cookie('jwtToken', token, { httpOnly: false,secure:false,sameSite:'none'});
-      return res.redirect(`https://frontend--tradewise-rutwik.netlify.app/setToken/${id}`);
+      return res.redirect(`https://frontend--tradewise-rutwik.netlify.app/setToken/${token}`);
     } catch (e) {
       console.error("Error generating JWT token:", e);
       return res.status(500).json({ message: "Internal Server error" });
