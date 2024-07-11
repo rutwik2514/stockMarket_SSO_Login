@@ -93,14 +93,16 @@ export const Sell = async (req, res) => {
     // console.log("i am pushed");
     try {
       await portfolio.save();
-      res.status(200).json({ message: "Portfolio created Successfully" })
+      return res.status(200).json({ message: "Portfolio created Successfully" })
     } catch (error) {
       console.log(error)
-      res.status(500).json({ message: "Error Updating Portfolio" })
+      return res.status(500).json({ message: "Error Updating Portfolio" })
     }
 
   } catch (e) {
     console.log("Stock market is down at this moment");
+    return res.status(500).json({ message: "Stock Market is Down" })
+
     // return { stockInfo: e };
   }
 };
@@ -121,6 +123,6 @@ export const showStocks = async (req, res) => {
         portfolio_user: portfolio_user,
       });
   } catch (e) {
-    res.status(500).json({ message: "error occured" });
+    return res.status(500).json({ message: "error occured" });
   }
 };

@@ -21,7 +21,7 @@ export const signUp = async (req, res) => {
   ///validations
   if (!validemail(email)) {
     return res.status(500).json({ message: "Invalid email:Please check again" });
-   
+
   }
   if (confirmPassword != password) {
     res.status(500).json({ message: "Password and confirmPassword must be same" });
@@ -41,9 +41,9 @@ export const signUp = async (req, res) => {
     await portfolio.save();
     user.portfolio = portfolio._id;
     await user.save();
-    res.status(201).json({ message: "user created successfully" });
+    return res.status(201).json({ message: "user created successfully" });
   } catch (e) {
-    res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -65,11 +65,28 @@ export const signIn = async (req, res) => {
   try {
     const id = findUser._id;
     const token = jwt.sign({ id }, process.env.JWTSECRET);
-    res.status(200).send({ message: "User logged in succesfuly", token });
+    return res.status(200).send({ message: "User logged in succesfuly", token });
   } catch (e) {
-    res.status(500).json({ message: "Internal Server error" });
+    return res.status(500).json({ message: "Internal Server error" });
   }
 };
+
+export const getToken = (req, res) => {
+  try {
+    const { id } = req.body;
+    if (!id) {
+      res.status(500).json({ message: "Please Provide ID" });
+    }
+    const token = jwt.sign({ id }, process.env.JWTSECRET);
+    return res.status(200).send({ message: "User logged in succesfuly", token });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+    
+  }
+
+
+
+}
 
 export const fetchUser = (req, res) => {
   res.status(200).json({ message: req.decoded_token });
@@ -78,9 +95,9 @@ export const fetchUser = (req, res) => {
 export const getUserDetails = async (req, res) => {
   try {
     const user = await User.findById(req.decoded_token.id);
-    res.status(200).json({ user: user });
+    return res.status(200).json({ user: user });
   } catch (e) {
-    res.status(500).json({ user: "No user found" });
+    return res.status(500).json({ user: "No user found" });
   }
 
 
@@ -91,9 +108,9 @@ export const updateUsername = async (req, res) => {
     const user = await User.findById(req.decoded_token.id);
     user.userName = updateUserName;
     await user.save();
-    res.status(200).json({ message: "Updated successfully" });
+    return res.status(200).json({ message: "Updated successfully" });
   } catch (e) {
-    res.status(500).json({ message: "No user found" });
+    return res.status(500).json({ message: "No user found" });
   }
 
 }

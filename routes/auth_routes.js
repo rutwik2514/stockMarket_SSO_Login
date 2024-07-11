@@ -8,6 +8,7 @@ import {
   signUp,
   fetchUser,
   updateUsername,
+  getToken,
 } from "../controllers/auth_controllers.js";
 import { checkAuthorization } from "../middleware/VerifyUser.js";
 import jwt from "jsonwebtoken";
@@ -21,7 +22,7 @@ router.post("/signup", signUp);
 router.post("/fetchUser", checkAuthorization, fetchUser);
 router.post("/getUserDetails", checkAuthorization, getUserDetails);
 router.post("/updateUser", checkAuthorization, updateUsername);
-
+router.post("/getToken",getToken)
 // SAML routes
 router.get(
   "/saml/login",
@@ -57,7 +58,6 @@ router.post(
 
     }
     else {
-      console.log("New User");
       const password = process.env.DEFAULT_PASSWORD; // Set a default password or generate a random one
       const newPassword = password + process.env.PEPPER;
       const hashedPassword = await bcrypt.genSalt(10).then((salt) => bcrypt.hash(newPassword, salt));
@@ -75,9 +75,9 @@ router.post(
       }
     }
     try {
-
       const token = jwt.sign({ id }, process.env.JWTSECRET);
-      return res.redirect(`http://localhost:3000/setToken/${token}`);
+      // res.cookie('jwtToken', token, { httpOnly: false,secure:false,sameSite:'none'});
+      return res.redirect(`https://frontend--tradewise-rutwik.netlify.app/setToken/${id}`);
     } catch (e) {
       console.error("Error generating JWT token:", e);
       return res.status(500).json({ message: "Internal Server error" });
